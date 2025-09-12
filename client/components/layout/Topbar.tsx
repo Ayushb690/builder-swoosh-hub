@@ -5,16 +5,27 @@ interface TopbarProps {
   onMenuClick?: () => void;
 }
 
-export default function Topbar({ title = "FRA Atlas", onMenuClick }: TopbarProps) {
+export default function Topbar({
+  title = "FRA Atlas",
+  onMenuClick,
+}: TopbarProps) {
   return (
     <header className="bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b sticky top-0 z-30">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-3">
-        <button className="lg:hidden p-2 rounded-md hover:bg-accent" aria-label="Open menu" onClick={onMenuClick}>
+        <button
+          className="lg:hidden p-2 rounded-md hover:bg-accent"
+          aria-label="Open menu"
+          onClick={onMenuClick}
+        >
           <Menu className="h-5 w-5" />
         </button>
         <div className="flex items-center gap-3">
-          <div className="h-9 w-9 grid place-items-center rounded-md bg-primary text-primary-foreground font-bold shadow-sm">FA</div>
-          <div className="font-semibold text-lg tracking-tight hidden sm:block">{title}</div>
+          <div className="h-9 w-9 grid place-items-center rounded-md bg-primary text-primary-foreground font-bold shadow-sm">
+            FA
+          </div>
+          <div className="font-semibold text-lg tracking-tight hidden sm:block">
+            {title}
+          </div>
         </div>
 
         <div className="flex-1" />

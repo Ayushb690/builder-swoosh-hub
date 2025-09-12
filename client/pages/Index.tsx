@@ -15,7 +15,12 @@ export default function Index() {
 
   return (
     <AppLayout
-      left={<Sidebar filters={filters} onChange={(next) => setFilters((f) => ({ ...f, ...next }))} />}
+      left={
+        <Sidebar
+          filters={filters}
+          onChange={(next) => setFilters((f) => ({ ...f, ...next }))}
+        />
+      }
       title="FRA Atlas"
     >
       <div className="rounded-xl bg-card border shadow-sm p-2 sm:p-3 lg:p-4">

@@ -7,12 +7,19 @@ interface AppLayoutProps {
   title?: string;
 }
 
-export default function AppLayout({ left, children, title = "FRA Atlas" }: AppLayoutProps) {
+export default function AppLayout({
+  left,
+  children,
+  title = "FRA Atlas",
+}: AppLayoutProps) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-muted/20">
-      <Topbar title={title} onMenuClick={() => setMobileSidebarOpen((s) => !s)} />
+      <Topbar
+        title={title}
+        onMenuClick={() => setMobileSidebarOpen((s) => !s)}
+      />
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-4 lg:gap-6 py-4 lg:py-6">
           {/* Sidebar for desktop */}
@@ -28,7 +35,9 @@ export default function AppLayout({ left, children, title = "FRA Atlas" }: AppLa
           {left ? (
             <div
               className={`lg:hidden fixed inset-0 z-40 transition ${
-                mobileSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                mobileSidebarOpen
+                  ? "opacity-100 pointer-events-auto"
+                  : "opacity-0 pointer-events-none"
               }`}
               aria-hidden={!mobileSidebarOpen}
               onClick={() => setMobileSidebarOpen(false)}

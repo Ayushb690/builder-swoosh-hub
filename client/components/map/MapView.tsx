@@ -21,11 +21,14 @@ export default function MapView({ filters }: { filters: MapFilters }) {
     if (!L) return;
 
     if (!leafletMap.current && mapRef.current) {
-      const map = L.map(mapRef.current, { zoomControl: true }).setView(INDIA_CENTER, 5);
+      const map = L.map(mapRef.current, { zoomControl: true }).setView(
+        INDIA_CENTER,
+        5,
+      );
       leafletMap.current = map;
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; OpenStreetMap contributors',
+        attribution: "&copy; OpenStreetMap contributors",
         maxZoom: 19,
       }).addTo(map);
 
@@ -37,7 +40,7 @@ export default function MapView({ filters }: { filters: MapFilters }) {
           [21.0, 79.0],
           [19.8, 79.5],
         ],
-        { color: "#dc2626", weight: 2, fill: false }
+        { color: "#dc2626", weight: 2, fill: false },
       );
 
       // Land use polygons
@@ -48,7 +51,12 @@ export default function MapView({ filters }: { filters: MapFilters }) {
           [19.0, 75.0],
           [18.5, 74.6],
         ],
-        { color: "#d97706", weight: 1, fillColor: "#f59e0b", fillOpacity: 0.35 }
+        {
+          color: "#d97706",
+          weight: 1,
+          fillColor: "#f59e0b",
+          fillOpacity: 0.35,
+        },
       );
 
       const forest = L.polygon(
@@ -58,7 +66,12 @@ export default function MapView({ filters }: { filters: MapFilters }) {
           [21.2, 86.2],
           [20.7, 85.7],
         ],
-        { color: "#065f46", weight: 1, fillColor: "#10b981", fillOpacity: 0.35 }
+        {
+          color: "#065f46",
+          weight: 1,
+          fillColor: "#10b981",
+          fillOpacity: 0.35,
+        },
       );
 
       const water = L.polygon(
@@ -68,7 +81,12 @@ export default function MapView({ filters }: { filters: MapFilters }) {
           [22.6, 89.0],
           [22.1, 88.6],
         ],
-        { color: "#1d4ed8", weight: 1, fillColor: "#3b82f6", fillOpacity: 0.35 }
+        {
+          color: "#1d4ed8",
+          weight: 1,
+          fillColor: "#3b82f6",
+          fillOpacity: 0.35,
+        },
       );
 
       const settlements = L.polygon(
@@ -78,13 +96,33 @@ export default function MapView({ filters }: { filters: MapFilters }) {
           [23.2, 76.1],
           [22.8, 75.7],
         ],
-        { color: "#374151", weight: 1, fillColor: "#9ca3af", fillOpacity: 0.35 }
+        {
+          color: "#374151",
+          weight: 1,
+          fillColor: "#9ca3af",
+          fillOpacity: 0.35,
+        },
       );
 
       // Rights mock points
-      const ifr = L.circleMarker([20.3, 78.5], { radius: 6, color: "#16a34a", fillColor: "#16a34a", fillOpacity: 0.9 }).bindPopup("IFR Claim");
-      const cr = L.circleMarker([19.9, 78.0], { radius: 6, color: "#a16207", fillColor: "#a16207", fillOpacity: 0.9 }).bindPopup("CR Claim");
-      const cfr = L.circleMarker([20.7, 79.1], { radius: 6, color: "#2563eb", fillColor: "#2563eb", fillOpacity: 0.9 }).bindPopup("CFR Claim");
+      const ifr = L.circleMarker([20.3, 78.5], {
+        radius: 6,
+        color: "#16a34a",
+        fillColor: "#16a34a",
+        fillOpacity: 0.9,
+      }).bindPopup("IFR Claim");
+      const cr = L.circleMarker([19.9, 78.0], {
+        radius: 6,
+        color: "#a16207",
+        fillColor: "#a16207",
+        fillOpacity: 0.9,
+      }).bindPopup("CR Claim");
+      const cfr = L.circleMarker([20.7, 79.1], {
+        radius: 6,
+        color: "#2563eb",
+        fillColor: "#2563eb",
+        fillOpacity: 0.9,
+      }).bindPopup("CFR Claim");
 
       const overlays: Record<string, any> = {
         "FRA Boundaries": fraPoly,
@@ -97,21 +135,30 @@ export default function MapView({ filters }: { filters: MapFilters }) {
         "CFR Claims": cfr,
       };
 
-      Object.entries(overlays).forEach(([k, layer]) => (layersRef.current[k] = layer));
+      Object.entries(overlays).forEach(
+        ([k, layer]) => (layersRef.current[k] = layer),
+      );
 
-      const layersControl = L.control.layers(undefined, {
-        "FRA Boundaries": fraPoly,
-        Farmland: farmland,
-        Forest: forest,
-        Water: water,
-        Settlements: settlements,
-      }, { position: "topright" });
+      const layersControl = L.control.layers(
+        undefined,
+        {
+          "FRA Boundaries": fraPoly,
+          Farmland: farmland,
+          Forest: forest,
+          Water: water,
+          Settlements: settlements,
+        },
+        { position: "topright" },
+      );
       layersControl.addTo(map);
 
       // Legend
       const legend = L.control({ position: "bottomright" });
       legend.onAdd = function () {
-        const div = L.DomUtil.create("div", "legend bg-white/90 rounded-md shadow p-2 text-sm border");
+        const div = L.DomUtil.create(
+          "div",
+          "legend bg-white/90 rounded-md shadow p-2 text-sm border",
+        );
         div.innerHTML = `
           <div class="font-medium mb-1">Legend</div>
           <div class="flex items-center gap-2 mb-1"><span style="background:#f59e0b" class="inline-block w-3 h-3 border"></span> Farmland</div>
@@ -171,5 +218,10 @@ export default function MapView({ filters }: { filters: MapFilters }) {
     }
   }, [filters]);
 
-  return <div ref={mapRef} className="h-[calc(100vh-6rem)] rounded-xl border shadow-sm overflow-hidden" />;
+  return (
+    <div
+      ref={mapRef}
+      className="h-[calc(100vh-6rem)] rounded-xl border shadow-sm overflow-hidden"
+    />
+  );
 }

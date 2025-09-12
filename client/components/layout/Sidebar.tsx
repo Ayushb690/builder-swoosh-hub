@@ -23,7 +23,10 @@ const MOCK_DATA = {
           name: "Mayurbhanj",
           villages: ["Jashipur", "Baripada", "Kaptipada"],
         },
-        { name: "Kandhamal", villages: ["Phulbani", "Baliguda", "Tumudibandha"] },
+        {
+          name: "Kandhamal",
+          villages: ["Phulbani", "Baliguda", "Tumudibandha"],
+        },
       ],
     },
     {
@@ -51,7 +54,9 @@ export default function Sidebar({ filters, onChange }: SidebarProps) {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-semibold tracking-tight">FRA Atlas</h2>
-        <p className="text-sm text-muted-foreground mt-1">WebGIS dashboard for Forest Rights Act monitoring</p>
+        <p className="text-sm text-muted-foreground mt-1">
+          WebGIS dashboard for Forest Rights Act monitoring
+        </p>
       </div>
 
       <section>
@@ -62,7 +67,9 @@ export default function Sidebar({ filters, onChange }: SidebarProps) {
             <select
               className="mt-1 w-full h-10 rounded-md border bg-background px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-ring"
               value={filters.state}
-              onChange={(e) => onChange({ state: e.target.value, district: "", village: "" })}
+              onChange={(e) =>
+                onChange({ state: e.target.value, district: "", village: "" })
+              }
             >
               <option value="">All States</option>
               {MOCK_DATA.states.map((s) => (
@@ -77,7 +84,9 @@ export default function Sidebar({ filters, onChange }: SidebarProps) {
             <select
               className="mt-1 w-full h-10 rounded-md border bg-background px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-ring"
               value={filters.district}
-              onChange={(e) => onChange({ district: e.target.value, village: "" })}
+              onChange={(e) =>
+                onChange({ district: e.target.value, village: "" })
+              }
               disabled={!filters.state}
             >
               <option value="">All Districts</option>
@@ -111,15 +120,30 @@ export default function Sidebar({ filters, onChange }: SidebarProps) {
         <h3 className="font-medium mb-3">Rights</h3>
         <div className="space-y-2">
           <label className="flex items-center gap-3">
-            <input type="checkbox" className="h-4 w-4" checked={filters.showIFR} onChange={(e) => onChange({ showIFR: e.target.checked })} />
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              checked={filters.showIFR}
+              onChange={(e) => onChange({ showIFR: e.target.checked })}
+            />
             <span>Individual Forest Rights (IFR)</span>
           </label>
           <label className="flex items-center gap-3">
-            <input type="checkbox" className="h-4 w-4" checked={filters.showCR} onChange={(e) => onChange({ showCR: e.target.checked })} />
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              checked={filters.showCR}
+              onChange={(e) => onChange({ showCR: e.target.checked })}
+            />
             <span>Community Rights (CR)</span>
           </label>
           <label className="flex items-center gap-3">
-            <input type="checkbox" className="h-4 w-4" checked={filters.showCFR} onChange={(e) => onChange({ showCFR: e.target.checked })} />
+            <input
+              type="checkbox"
+              className="h-4 w-4"
+              checked={filters.showCFR}
+              onChange={(e) => onChange({ showCFR: e.target.checked })}
+            />
             <span>Community Forest Resource Rights (CFR)</span>
           </label>
         </div>
@@ -149,7 +173,9 @@ export default function Sidebar({ filters, onChange }: SidebarProps) {
         </div>
       </section>
 
-      <div className="text-xs text-muted-foreground">Data shown is mock for prototype</div>
+      <div className="text-xs text-muted-foreground">
+        Data shown is mock for prototype
+      </div>
     </div>
   );
 }
