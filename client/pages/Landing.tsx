@@ -5,7 +5,7 @@ export default function Landing() {
   const nav = useNavigate();
   return (
     <div className="min-h-screen bg-muted/20">
-      <Topbar title="FRA Atlas" />
+      <Topbar title="FRA Atlas" showLogo={false} showSearch={false} showProfile={false} showMenu={false} />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
