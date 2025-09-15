@@ -7,6 +7,7 @@ interface TopbarProps {
   showLogo?: boolean;
   showSearch?: boolean;
   showProfile?: boolean;
+  showTitle?: boolean;
 }
 
 export default function Topbar({
@@ -16,6 +17,7 @@ export default function Topbar({
   showLogo = true,
   showSearch = true,
   showProfile = true,
+  showTitle = true,
 }: TopbarProps) {
   return (
     <header className="bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b sticky top-0 z-30">
@@ -35,9 +37,11 @@ export default function Topbar({
               FA
             </div>
           ) : null}
-          <div className="font-semibold text-lg tracking-tight hidden sm:block">
-            {title}
-          </div>
+          {showTitle ? (
+            <div className="font-semibold text-lg tracking-tight hidden sm:block">
+              {title}
+            </div>
+          ) : null}
         </div>
 
         <div className="flex-1" />

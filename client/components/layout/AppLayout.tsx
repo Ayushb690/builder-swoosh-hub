@@ -25,7 +25,7 @@ export default function AppLayout({
           {/* Sidebar for desktop */}
           {left ? (
             <aside className="hidden lg:block">
-              <div className="rounded-xl bg-card shadow-sm border p-4 lg:p-5 sticky top-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              <div className="rounded-xl bg-card shadow-sm border p-4 lg:p-5 sticky top-4 max-h-[calc(100vh-6rem)] overflow-y-auto relative z-[1100]">
                 {left}
               </div>
             </aside>
