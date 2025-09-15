@@ -88,12 +88,12 @@ export default function UserDashboard() {
 
   return (
     <AppLayout title="FRA Atlas">
-      <div className="grid lg:grid-cols-3 gap-4 lg:gap-6">
-        <div className="lg:col-span-2 space-y-4">
+      <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
+        <div className="md:col-span-2 space-y-4">
           <div className="rounded-xl border bg-card shadow-sm p-5">
             <h3 className="font-semibold">Upload Patta / Legacy Record</h3>
             <p className="text-sm text-muted-foreground">Drag & drop a PDF/JPEG or use the file picker. We'll simulate NER extraction.</p>
-            <div className="mt-4 grid sm:grid-cols-[180px_minmax(0,1fr)] gap-3">
+            <div className="mt-4 grid md:grid-cols-[180px_minmax(0,1fr)] gap-3">
               <select className="h-10 rounded-md border px-3" value={claimType} onChange={(e) => setClaimType(e.target.value)}>
                 <option value="IFR">IFR</option>
                 <option value="CR">CR</option>
