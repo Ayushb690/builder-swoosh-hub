@@ -3,11 +3,19 @@ import { Search, User2, Menu } from "lucide-react";
 interface TopbarProps {
   title?: string;
   onMenuClick?: () => void;
+  showMenu?: boolean;
+  showLogo?: boolean;
+  showSearch?: boolean;
+  showProfile?: boolean;
 }
 
 export default function Topbar({
   title = "FRA Atlas",
   onMenuClick,
+  showMenu = true,
+  showLogo = true,
+  showSearch = true,
+  showProfile = true,
 }: TopbarProps) {
   return (
     <header className="bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b sticky top-0 z-30">
