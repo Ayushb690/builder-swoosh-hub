@@ -1,7 +1,9 @@
 import AppLayout from "@/components/layout/AppLayout";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { addClaim, getClaims, getUser, saveClaims } from "@/state/store";
+import { addClaim, getClaims, getUser, saveClaims, deleteClaim } from "@/state/store";
 import { useNavigate } from "react-router-dom";
+
+const SAMPLE_NAMES = ["sahi Madho", "Abhiram Murmu"];
 
 export default function UserDashboard() {
   const nav = useNavigate();
@@ -18,6 +20,7 @@ export default function UserDashboard() {
   const [filterType, setFilterType] = useState("All");
   const [filterStatus, setFilterStatus] = useState("All");
   const dropRef = useRef<HTMLDivElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setRecent(getClaims().filter((c: any) => c.ownerRole === "User"));
@@ -39,10 +42,11 @@ export default function UserDashboard() {
     setTimeout(() => {
       clearInterval(interval);
       setProgress(100);
+      const name = SAMPLE_NAMES[Math.floor(Math.random() * SAMPLE_NAMES.length)];
       const dummy = {
         ownerRole: "User",
-        ownerName: user?.name || "Example Name",
-        name: "Example Name",
+        ownerName: name,
+        name,
         village: "Example Village",
         coordinates: "20.30, 78.50",
         status: "Pending",
@@ -86,6 +90,16 @@ export default function UserDashboard() {
     saveClaims(updatedList);
   };
 
+  const removeUploaded = () => {
+    if (!extracted) return;
+    const next = deleteClaim(extracted.id);
+    setRecent(next.filter((c: any) => c.ownerRole === "User"));
+    setExtracted(null);
+    setUploading(false);
+    setProgress(0);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   return (
     <AppLayout title="FRA Atlas">
       <div className="flex flex-col gap-4 lg:gap-6">
@@ -105,7 +119,7 @@ export default function UserDashboard() {
                   <div className="font-medium">Drop file here</div>
                   <div className="text-xs text-muted-foreground">or</div>
                   <label className="inline-flex mt-2 items-center justify-center px-3 h-9 rounded-md border cursor-pointer">
-                    <input type="file" className="hidden" accept=".pdf,image/*" onChange={onFileInput} />
+                    <input ref={fileInputRef} type="file" className="hidden" accept=".pdf,image/*" onChange={onFileInput} />
                     Choose file
                   </label>
                   {uploading ? (
@@ -119,6 +133,11 @@ export default function UserDashboard() {
                 </div>
               </div>
             </div>
+            {extracted ? (
+              <button className="mt-3 h-9 rounded-md border border-red-300 text-red-600 hover:bg-red-50" onClick={removeUploaded}>
+                Delete uploaded document
+              </button>
+            ) : null}
           </div>
 
           {/* Submissions - full width */}

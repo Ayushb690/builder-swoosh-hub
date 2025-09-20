@@ -46,3 +46,10 @@ export function updateClaimStatus(id, status) {
   saveClaims(updated);
   return updated.find((c) => c.id === id) || null;
 }
+
+export function deleteClaim(id) {
+  const list = getClaims();
+  const next = list.filter((c) => c.id !== id);
+  saveClaims(next);
+  return next;
+}
