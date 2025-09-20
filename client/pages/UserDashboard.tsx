@@ -88,10 +88,10 @@ export default function UserDashboard() {
 
   return (
     <AppLayout title="FRA Atlas">
-      <div className="grid grid-cols-1 gap-4 lg:gap-6">
-        <div className="space-y-4">
+      <div className="flex flex-col gap-4 lg:gap-6">
+        <div className="flex flex-col items-center justify-center mx-auto w-full space-y-4">
           {/* Upload section - full width */}
-          <div className="rounded-xl border bg-card shadow-sm p-5">
+          <div className="w-full rounded-xl border bg-card shadow-sm p-5">
             <h3 className="font-semibold">Upload Patta / Legacy Record</h3>
             <p className="text-sm text-muted-foreground">Drag & drop a PDF/JPEG or use the file picker. We'll simulate NER extraction.</p>
             <div className="mt-4 grid md:grid-cols-[180px_minmax(0,1fr)] gap-3">
@@ -122,7 +122,7 @@ export default function UserDashboard() {
           </div>
 
           {/* Submissions - full width */}
-          <div className="rounded-xl border bg-card shadow-sm p-5">
+          <div className="w-full rounded-xl border bg-card shadow-sm p-5">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Your Submissions</h3>
               <div className="flex gap-2">
@@ -165,7 +165,7 @@ export default function UserDashboard() {
           </div>
 
           {/* Extracted details - full width */}
-          <div className="rounded-xl border bg-card shadow-sm p-5">
+          <div className="w-full rounded-xl border bg-card shadow-sm p-5">
             <h3 className="font-semibold">Extracted Details</h3>
             {!extracted ? (
               <div className="text-sm text-muted-foreground mt-2">Upload a file to view extracted fields.</div>
