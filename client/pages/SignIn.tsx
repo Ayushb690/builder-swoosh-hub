@@ -31,7 +31,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-muted/20">
+    <div className="min-h-screen bg-muted/20 mr-px">
       <Topbar title="FRA Atlas" showSearch={false} showProfile={false} showMenu={false} />
       <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="rounded-xl border bg-card shadow-sm p-6">

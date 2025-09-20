@@ -33,7 +33,7 @@ export default function Topbar({
         ) : null}
         <div className="flex items-center gap-3">
           {showLogo ? (
-            <div className="h-9 w-9 grid place-items-center rounded-md bg-primary text-primary-foreground font-bold shadow-sm">
+            <div className="h-9 w-9 grid place-items-center rounded-md bg-primary text-primary-foreground font-bold shadow-sm -ml-[3px]">
               FA
             </div>
           ) : null}
