@@ -2,7 +2,7 @@ import AppLayout from "@/components/layout/AppLayout";
 import Sidebar from "@/components/layout/Sidebar";
 import MapView from "@/components/map/MapView";
 import { useEffect, useMemo, useState } from "react";
-import { getClaims, getUser, updateClaimStatus, deleteClaim } from "@/state/store";
+import { getClaims, getUser, updateClaimStatus } from "@/state/store";
 import { useNavigate } from "react-router-dom";
 
 export default function AuthorityDashboard() {
@@ -47,15 +47,12 @@ export default function AuthorityDashboard() {
     setRecords((rs) => rs.map((x) => (x.id === updated.id ? updated : x)));
   };
 
-  const remove = (id) => {
-    const next = deleteClaim(id);
-    setRecords(next);
-    setSelected((s) => (s && s.id === id ? next[0] || null : s));
-  };
 
   return (
     <AppLayout
       title="FRA Atlas"
+      topbarFixed
+      topbarSolid
       left={
         <div className="space-y-6">
           <Sidebar
@@ -111,7 +108,6 @@ export default function AuthorityDashboard() {
                         <div className="flex gap-2">
                           <button className="px-3 h-8 rounded-md border" onClick={() => { setSelected(r); mark("Approved"); }}>Verify</button>
                           <button className="px-3 h-8 rounded-md border" onClick={() => { setSelected(r); mark("Rejected"); }}>Reject</button>
-                          <button className="px-3 h-8 rounded-md border border-red-300 text-red-600" onClick={() => remove(r.id)}>Delete</button>
                         </div>
                       </td>
                     </tr>
@@ -147,7 +143,6 @@ export default function AuthorityDashboard() {
               <div className="flex gap-2 pt-2">
                 <button className="px-3 h-9 rounded-md border" onClick={() => mark("Approved")}>Mark Verified</button>
                 <button className="px-3 h-9 rounded-md border" onClick={() => mark("Rejected")}>Reject</button>
-                <button className="px-3 h-9 rounded-md border border-red-300 text-red-600" onClick={() => selected && remove(selected.id)}>Delete</button>
               </div>
             </div>
           )}
