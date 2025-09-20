@@ -14,6 +14,10 @@ export default function AppLayout({
 }: AppLayoutProps) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
+  const gridCols = left
+    ? "grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)]"
+    : "grid-cols-1";
+
   return (
     <div className="min-h-screen bg-muted/20">
       <Topbar
@@ -21,7 +25,7 @@ export default function AppLayout({
         onMenuClick={() => setMobileSidebarOpen((s) => !s)}
       />
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-4 lg:gap-6 py-4 lg:py-6">
+        <div className={`grid ${gridCols} gap-4 lg:gap-6 py-4 lg:py-6`}>
           {/* Sidebar for desktop */}
           {left ? (
             <aside className="hidden lg:block">
