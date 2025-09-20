@@ -43,7 +43,7 @@ export default function SignIn() {
                 <label className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer ${role === "User" ? "ring-2 ring-ring" : ""}`}>
                   <input type="radio" name="role" value="User" checked={role === "User"} onChange={() => setRole("User")} />
                   <div>
-                    <div className="font-medium">User (Patta Holder)</div>
+                    <div className="font-medium">User (Organisation)</div>
                     <div className="text-xs text-muted-foreground">Upload and track claim status</div>
                   </div>
                 </label>

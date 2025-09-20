@@ -88,8 +88,9 @@ export default function UserDashboard() {
 
   return (
     <AppLayout title="FRA Atlas">
-      <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
-        <div className="md:col-span-2 space-y-4">
+      <div className="grid grid-cols-1 gap-4 lg:gap-6">
+        <div className="space-y-4">
+          {/* Upload section - full width */}
           <div className="rounded-xl border bg-card shadow-sm p-5">
             <h3 className="font-semibold">Upload Patta / Legacy Record</h3>
             <p className="text-sm text-muted-foreground">Drag & drop a PDF/JPEG or use the file picker. We'll simulate NER extraction.</p>
@@ -120,6 +121,7 @@ export default function UserDashboard() {
             </div>
           </div>
 
+          {/* Submissions - full width */}
           <div className="rounded-xl border bg-card shadow-sm p-5">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Your Submissions</h3>
@@ -161,9 +163,8 @@ export default function UserDashboard() {
               )}
             </div>
           </div>
-        </div>
 
-        <div className="space-y-4">
+          {/* Extracted details - full width */}
           <div className="rounded-xl border bg-card shadow-sm p-5">
             <h3 className="font-semibold">Extracted Details</h3>
             {!extracted ? (
