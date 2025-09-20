@@ -30,7 +30,7 @@ export default function Topbar({
   return (
     <>
       <header className={`${bgCls} ${posCls}`}>
-        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-3">
+        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-3 z-[1]">
           {showMenu ? (
             <button
               className="lg:hidden p-2 rounded-md hover:bg-accent"
