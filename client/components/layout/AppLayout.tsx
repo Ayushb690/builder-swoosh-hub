@@ -5,12 +5,16 @@ interface AppLayoutProps {
   left?: ReactNode;
   children: ReactNode;
   title?: string;
+  topbarFixed?: boolean;
+  topbarSolid?: boolean;
 }
 
 export default function AppLayout({
   left,
   children,
   title = "FRA Atlas",
+  topbarFixed = false,
+  topbarSolid = false,
 }: AppLayoutProps) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -23,6 +27,8 @@ export default function AppLayout({
       <Topbar
         title={title}
         onMenuClick={() => setMobileSidebarOpen((s) => !s)}
+        fixed={topbarFixed}
+        solid={topbarSolid}
       />
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className={`grid ${gridCols} gap-4 lg:gap-6 py-4 lg:py-6`}>
