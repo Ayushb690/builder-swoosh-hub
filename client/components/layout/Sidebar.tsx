@@ -53,7 +53,7 @@ export default function Sidebar({ filters, onChange }: SidebarProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight">FRA Atlas</h2>
+        <h2 className="text-xl font-semibold tracking-tight">FRAi</h2>
         <p className="text-sm text-muted-foreground mt-1">
           WebGIS dashboard for Forest Rights Act monitoring
         </p>
