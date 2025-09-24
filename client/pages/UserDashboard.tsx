@@ -101,7 +101,7 @@ export default function UserDashboard() {
   };
 
   return (
-    <AppLayout title="FRAi">
+    <AppLayout title="FRA+Ai" topbarShowTitle={false}>
       <div className="flex flex-col gap-4 lg:gap-6">
         <div className="flex flex-col items-center justify-center mx-auto w-full space-y-4">
           {/* Upload section - full width */}

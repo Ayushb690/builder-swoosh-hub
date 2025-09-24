@@ -13,7 +13,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <AppLayout title="FRAi">
+    <AppLayout title="FRA+Ai">
       <div className="h-[calc(100vh-6rem)] grid place-items-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">404</h1>

@@ -50,9 +50,10 @@ export default function AuthorityDashboard() {
 
   return (
     <AppLayout
-      title="FRAi"
+      title="FRA+Ai"
       topbarFixed
       topbarSolid
+      topbarShowTitle={false}
       left={
         <div className="space-y-6">
           <Sidebar

@@ -7,14 +7,16 @@ interface AppLayoutProps {
   title?: string;
   topbarFixed?: boolean;
   topbarSolid?: boolean;
+  topbarShowTitle?: boolean;
 }
 
 export default function AppLayout({
   left,
   children,
-  title = "FRAi",
+  title = "FRA+Ai",
   topbarFixed = false,
   topbarSolid = false,
+  topbarShowTitle = true,
 }: AppLayoutProps) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -29,6 +31,7 @@ export default function AppLayout({
         onMenuClick={() => setMobileSidebarOpen((s) => !s)}
         fixed={topbarFixed}
         solid={topbarSolid}
+        showTitle={topbarShowTitle}
       />
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className={`grid ${gridCols} gap-4 lg:gap-6 py-4 lg:py-6`}>

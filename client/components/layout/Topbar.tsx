@@ -13,7 +13,7 @@ interface TopbarProps {
 }
 
 export default function Topbar({
-  title = "FRAi",
+  title = "FRA+Ai",
   onMenuClick,
   showMenu = true,
   showLogo = true,
