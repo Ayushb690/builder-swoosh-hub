@@ -34,8 +34,14 @@ export default function AuthorityDashboard() {
 
   const filtered = useMemo(() => {
     return records.filter((r) => {
-      const typeOk = (r.claimType === "IFR" && filters.showIFR) || (r.claimType === "CR" && filters.showCR) || (r.claimType === "CFR" && filters.showCFR);
-      const statusOk = (r.status === "Pending" && filters.pending) || (r.status === "Approved" && filters.granted) || (r.status === "Rejected" && true);
+      const typeOk =
+        (r.claimType === "IFR" && filters.showIFR) ||
+        (r.claimType === "CR" && filters.showCR) ||
+        (r.claimType === "CFR" && filters.showCFR);
+      const statusOk =
+        (r.status === "Pending" && filters.pending) ||
+        (r.status === "Approved" && filters.granted) ||
+        (r.status === "Rejected" && true);
       return typeOk && statusOk;
     });
   }, [records, filters]);
@@ -46,7 +52,6 @@ export default function AuthorityDashboard() {
     setSelected(updated);
     setRecords((rs) => rs.map((x) => (x.id === updated.id ? updated : x)));
   };
-
 
   return (
     <AppLayout
@@ -63,11 +68,25 @@ export default function AuthorityDashboard() {
           <section>
             <h3 className="font-medium mb-3">Status Filters</h3>
             <label className="flex items-center gap-3 mb-2">
-              <input type="checkbox" className="h-4 w-4" checked={filters.pending} onChange={(e) => setFilters((f) => ({ ...f, pending: e.target.checked }))} />
+              <input
+                type="checkbox"
+                className="h-4 w-4"
+                checked={filters.pending}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, pending: e.target.checked }))
+                }
+              />
               <span>Pending Claims</span>
             </label>
             <label className="flex items-center gap-3">
-              <input type="checkbox" className="h-4 w-4" checked={filters.granted} onChange={(e) => setFilters((f) => ({ ...f, granted: e.target.checked }))} />
+              <input
+                type="checkbox"
+                className="h-4 w-4"
+                checked={filters.granted}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, granted: e.target.checked }))
+                }
+              />
               <span>Granted (Approved) Claims</span>
             </label>
           </section>
@@ -83,7 +102,9 @@ export default function AuthorityDashboard() {
           <div className="rounded-xl border bg-card shadow-sm p-5">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold">Legacy Records</h3>
-              <div className="text-xs text-muted-foreground">{filtered.length} items</div>
+              <div className="text-xs text-muted-foreground">
+                {filtered.length} items
+              </div>
             </div>
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-sm">
@@ -98,17 +119,45 @@ export default function AuthorityDashboard() {
                 </thead>
                 <tbody>
                   {filtered.map((r) => (
-                    <tr key={r.id} className={`border-b last:border-0 ${selected?.id === r.id ? "bg-accent/40" : ""}`}>
-                      <td className="py-2 pr-3 whitespace-nowrap cursor-pointer" onClick={() => setSelected(r)}>{r.filename || "Record"}</td>
+                    <tr
+                      key={r.id}
+                      className={`border-b last:border-0 ${selected?.id === r.id ? "bg-accent/40" : ""}`}
+                    >
+                      <td
+                        className="py-2 pr-3 whitespace-nowrap cursor-pointer"
+                        onClick={() => setSelected(r)}
+                      >
+                        {r.filename || "Record"}
+                      </td>
                       <td className="py-2 pr-3">{r.claimType}</td>
                       <td className="py-2 pr-3">{r.village}</td>
                       <td className="py-2 pr-3">
-                        <span className={`px-2 py-0.5 rounded text-xs border ${r.status === "Approved" ? "bg-green-50 border-green-600 text-green-700" : r.status === "Rejected" ? "bg-red-50 border-red-600 text-red-700" : "bg-yellow-50 border-yellow-600 text-yellow-700"}`}>{r.status}</span>
+                        <span
+                          className={`px-2 py-0.5 rounded text-xs border ${r.status === "Approved" ? "bg-green-50 border-green-600 text-green-700" : r.status === "Rejected" ? "bg-red-50 border-red-600 text-red-700" : "bg-yellow-50 border-yellow-600 text-yellow-700"}`}
+                        >
+                          {r.status}
+                        </span>
                       </td>
                       <td className="py-2 pr-3">
                         <div className="flex gap-2">
-                          <button className="px-3 h-8 rounded-md border" onClick={() => { setSelected(r); mark("Approved"); }}>Verify</button>
-                          <button className="px-3 h-8 rounded-md border" onClick={() => { setSelected(r); mark("Rejected"); }}>Reject</button>
+                          <button
+                            className="px-3 h-8 rounded-md border"
+                            onClick={() => {
+                              setSelected(r);
+                              mark("Approved");
+                            }}
+                          >
+                            Verify
+                          </button>
+                          <button
+                            className="px-3 h-8 rounded-md border"
+                            onClick={() => {
+                              setSelected(r);
+                              mark("Rejected");
+                            }}
+                          >
+                            Reject
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -122,15 +171,35 @@ export default function AuthorityDashboard() {
         <aside className="rounded-xl border bg-card shadow-sm p-5 h-min sticky top-24">
           <h3 className="font-semibold">Details</h3>
           {!selected ? (
-            <div className="text-sm text-muted-foreground mt-2">Select a record to view details</div>
+            <div className="text-sm text-muted-foreground mt-2">
+              Select a record to view details
+            </div>
           ) : (
             <div className="mt-3 space-y-2 text-sm">
-              <div><span className="text-muted-foreground">File:</span> {selected.filename}</div>
-              <div><span className="text-muted-foreground">Type:</span> {selected.claimType}</div>
-              <div><span className="text-muted-foreground">Name:</span> {selected.name}</div>
-              <div><span className="text-muted-foreground">Village:</span> {selected.village}</div>
-              <div><span className="text-muted-foreground">Coordinates:</span> {selected.coordinates}</div>
-              <div><span className="text-muted-foreground">Status:</span> {selected.status}</div>
+              <div>
+                <span className="text-muted-foreground">File:</span>{" "}
+                {selected.filename}
+              </div>
+              <div>
+                <span className="text-muted-foreground">Type:</span>{" "}
+                {selected.claimType}
+              </div>
+              <div>
+                <span className="text-muted-foreground">Name:</span>{" "}
+                {selected.name}
+              </div>
+              <div>
+                <span className="text-muted-foreground">Village:</span>{" "}
+                {selected.village}
+              </div>
+              <div>
+                <span className="text-muted-foreground">Coordinates:</span>{" "}
+                {selected.coordinates}
+              </div>
+              <div>
+                <span className="text-muted-foreground">Status:</span>{" "}
+                {selected.status}
+              </div>
 
               <div className="mt-4 p-3 rounded-lg border bg-background">
                 <div className="font-medium mb-1">AI / DSS Recommendations</div>
@@ -142,8 +211,18 @@ export default function AuthorityDashboard() {
               </div>
 
               <div className="flex gap-2 pt-2">
-                <button className="px-3 h-9 rounded-md border" onClick={() => mark("Approved")}>Mark Verified</button>
-                <button className="px-3 h-9 rounded-md border" onClick={() => mark("Rejected")}>Reject</button>
+                <button
+                  className="px-3 h-9 rounded-md border"
+                  onClick={() => mark("Approved")}
+                >
+                  Mark Verified
+                </button>
+                <button
+                  className="px-3 h-9 rounded-md border"
+                  onClick={() => mark("Rejected")}
+                >
+                  Reject
+                </button>
               </div>
             </div>
           )}
