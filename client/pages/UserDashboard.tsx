@@ -101,7 +101,7 @@ export default function UserDashboard() {
   };
 
   return (
-    <AppLayout title="FRA Atlas">
+    <AppLayout title="FRAi">
       <div className="flex flex-col gap-4 lg:gap-6">
         <div className="flex flex-col items-center justify-center mx-auto w-full space-y-4">
           {/* Upload section - full width */}
