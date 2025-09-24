@@ -12,7 +12,7 @@ interface AppLayoutProps {
 export default function AppLayout({
   left,
   children,
-  title = "FRA Atlas",
+  title = "FRAi",
   topbarFixed = false,
   topbarSolid = false,
 }: AppLayoutProps) {
