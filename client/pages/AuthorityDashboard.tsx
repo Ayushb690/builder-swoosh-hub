@@ -50,7 +50,7 @@ export default function AuthorityDashboard() {
 
   return (
     <AppLayout
-      title="FRA Atlas"
+      title="FRAi"
       topbarFixed
       topbarSolid
       left={
